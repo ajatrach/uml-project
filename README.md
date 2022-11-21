@@ -1,12 +1,16 @@
-UML by Jeff Dike 
+UML is by Jeff Dike 
  >Copyright (C) 2000 - 2007 Jeff Dike (jdike@{linux.intel,addtoit}.com)
+ >
  >Licensed under the GPL
- (all initial commit is work of Jeff Dike)
+ >
+ >(all initially committed is work of Jeff Dike)
  
-Project goal: to record lines of text entered in the UML terminal and saving to an external file
+**Project goal: to record lines of text entered in the UML terminal and saving to an external file**
 
 Located in /linux-5.1.16/arch/um/drivers is user_chan.c
-c_out is the key pressed
+
+**c_out** is the key pressed
+```
 int generic_read(int fd, char *c_out, void *unused)
 {
         int n;
@@ -21,4 +25,5 @@ int generic_read(int fd, char *c_out, void *unused)
                 return -EIO;
         return -errno;
 }
+```
 
