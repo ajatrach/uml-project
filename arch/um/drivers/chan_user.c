@@ -24,9 +24,9 @@ int generic_read(int fd, char *c_out, void *unused)
 	int n;
 
 	n = read(fd, c_out, sizeof(*c_out));
-	printk("fd: %d\n",fd);
+	//printk("fd: %d\n",fd);
 	//print out key pressed
-        printk("c_out: %s\n",c_out);
+        //printk("c_out: %s\n",c_out);
 
 	if (n > 0)
 		return n;
