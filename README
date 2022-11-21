@@ -3,5 +3,22 @@ UML by Jeff Dike
  >Licensed under the GPL
  (all initial commit is work of Jeff Dike)
  
-**Project goal: to record lines of text entered in the UML terminal and saving to an external file**
- 
+Project goal: to record lines of text entered in the UML terminal and saving to an external file
+
+Located in /linux-5.1.16/arch/um/drivers is user_chan.c
+c_out is the key pressed
+int generic_read(int fd, char *c_out, void *unused)
+{
+        int n;
+        n = read(fd, c_out, sizeof(*c_out));
+        printk("fd: %d\n",fd);
+        printk("c_out: %s\n",c_out); <--prints key pressed to terminal
+        if (n > 0)
+                return n;
+        else if (errno == EAGAIN)
+                return 0;
+        else if (n == 0)
+                return -EIO;
+        return -errno;
+}
+
