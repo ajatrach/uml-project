@@ -1,6 +1,7 @@
-UML by Jeff Dike
+UML by Jeff Dike 
  >Copyright (C) 2000 - 2007 Jeff Dike (jdike@{linux.intel,addtoit}.com)
  >Licensed under the GPL
+ (all initial commit is work of Jeff Dike)
  
 Project goal: to record lines of text entered in the UML terminal and saving to an external file
  
