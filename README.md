@@ -5,6 +5,8 @@ UML is by Jeff Dike
  >
  >(all initially committed is work of Jeff Dike)
  
+Configured via https://xeiaso.net/blog/howto-usermode-linux-2019-07-07
+ 
 **Project goal: to record lines of text entered in the UML terminal and saving to an external file**
 
 Located in /linux-5.1.16/arch/um/drivers is user_chan.c
