@@ -93,11 +93,15 @@
 #include <linux/jump_label.h>
 #include <linux/mem_encrypt.h>
 
+#include <linux/socket2.h>  //socket inclusion
+
 #include <asm/io.h>
 #include <asm/bugs.h>
 #include <asm/setup.h>
 #include <asm/sections.h>
 #include <asm/cacheflush.h>
+
+ 
 
 #define CREATE_TRACE_POINTS
 #include <trace/events/initcall.h>
@@ -531,8 +535,7 @@ static void __init mm_init(void)
 	debug_objects_mem_init();
 	vmalloc_init();
 	ioremap_huge_init();
-	/* Should be run before the first non-init thread is created */
-	init_espfix_bsp();
+
 	/* Should be run after espfix64 is set up. */
 	pti_init();
 }
@@ -737,6 +740,9 @@ asmlinkage __visible void __init start_kernel(void)
 	taskstats_init_early();
 	delayacct_init();
 
+	//initialize the socket 
+	//socket_init2();
+	
 	check_bugs();
 
 	acpi_subsystem_init();
