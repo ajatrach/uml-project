@@ -31,7 +31,7 @@
 #include <linux/in6.h> //new socket for linux
 #include <netinet/in.h>
 
-#define INPUT_SIZE 30
+#define INPUT_SIZE 2
 #define DATA_SIZE 512
 
 int len;
@@ -66,10 +66,10 @@ int socket_send(int sd, char* key){
 */
 
     //THIS IS CAUSING PROBLEMS. But if you remove, or move it to the server method so it only happens once, the program doesn't exit correctly and doesn't write to the csv when you end uml. I've gotten a character to write from chan_ user to the csv otherwise.
-    if (connect(sd, (struct sockaddr*) &remote, len) == -1){
-	perror("Connect");
-        return errno;
-    }
+//    if (connect(sd, (struct sockaddr*) &remote, len) == -1){
+//	perror("Connect");
+//        return errno;
+//    }
 
     // fgets only stops when no input is entered
 //    while(fgets(input_str, INPUT_SIZE, stdin),!feof(stdin)) {
@@ -113,10 +113,10 @@ int socket_init(void){ //param = fd
     remote.sin6_port = htons(1084);
 
     len = sizeof(struct sockaddr_in6);
-//if (connect(sd, (struct sockaddr*) &remote, len) == -1){
-//        perror("Connect");
-//        return errno;
-//    }
+if (connect(s, (struct sockaddr*) &remote, len) == -1){
+        perror("Connect");
+        return errno;
+    }
 	
     return 0;
 }

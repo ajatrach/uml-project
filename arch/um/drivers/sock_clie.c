@@ -25,7 +25,7 @@ struct stat stat_buf;
 //init global vars
 int s;
 static struct sockaddr_in6 remote;
-
+int connectcheck=0;
 
 void check_data(int fd, char *input_str){
     __uid_t uid = stat_buf.st_uid;
@@ -41,17 +41,19 @@ int socket_send(int sd){
     char *c, *b;
     b=input_str;
     b=(malloc(sizeof(char)*INPUT_SIZE));
-/*                                                                                                                                  
+ /*                                                                                                                                  
  * Connect is only for client side. The following call connects the socket descriptor (s)                                           
  * to the address of the remote socket, which is stored at &remote in the server code.                                              
  * If successful, client side socket descriptor: s and server side socket_descriptor: client_s                                      
  * will be the same.                                                                                                                
 */                                                                                                                                  
-   
-    if (connect(sd, (struct sockaddr*) &remote, len) == -1){
-	perror("Connect");                                                                                                          
-        return errno;                                                                                                               
-    }     
+//   if(connectcheck=0){
+//    if (connect(sd, (struct sockaddr*) &remote, len) == -1){
+//	perror("Connect");                                                                                                          
+///        return errno; 
+//    }
+//	connectcheck++;    
+ //  }
     
     // fgets only stops when no input is entered
 //    while(fgets(input_str, INPUT_SIZE, stdin),!feof(stdin)) { 
@@ -93,7 +95,11 @@ int socket_init(){ //param = fd
     remote.sin6_port = htons(1084);
 
     len = sizeof(struct sockaddr_in6);
-    
+  if (connect(s, (struct sockaddr*) &remote, len) == -1){
+        perror("Connect");
+        return errno;
+    }
+  
     return 0;
 }
 
