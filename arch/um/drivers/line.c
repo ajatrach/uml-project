@@ -186,7 +186,7 @@ void line_flush_chars(struct tty_struct *tty)
 
 int line_put_char(struct tty_struct *tty, unsigned char ch)
 {
-	return line_write(tty, &ch, sizeof(ch));
+		return line_write(tty, &ch, sizeof(ch));
 }
 
 int line_write(struct tty_struct *tty, const unsigned char *buf, int len)
@@ -210,9 +210,11 @@ int line_write(struct tty_struct *tty, const unsigned char *buf, int len)
 		ret += n;
 		if (len > 0)
 			ret += buffer_data(line, buf + n, len);
+	
 	}
 out_up:
 	spin_unlock_irqrestore(&line->lock, flags);
+
 	return ret;
 }
 
